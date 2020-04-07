@@ -10,7 +10,7 @@ public class DAO {
 	protected EntityManager entityManager;
 
 	public static DAO getInstancia() {
-		if(instancia == null) {
+		if (instancia == null) {
 			instancia = new DAO();
 		}
 		return instancia;
@@ -21,14 +21,13 @@ public class DAO {
 	}
 
 	protected EntityManager getEntityManager() {
-		if(entityManager == null) {
-			EntityManagerFactory facotry = Persistence.createEntityManagerFactory("folha"); 
-			entityManager = facotry.createEntityManager();
+		if (entityManager == null) {
+			entityManager = Persistence.createEntityManagerFactory("folha").createEntityManager();
 		}
-		
+
 		return entityManager;
 	}
-	
+
 	public <T> T criar(T entidade) {
 		try {
 			entityManager.getTransaction().begin();
@@ -41,7 +40,7 @@ public class DAO {
 		}
 		return null;
 	}
-	
+
 	public <T> void atualizar(T entidade) {
 
 		try {
@@ -51,7 +50,7 @@ public class DAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 			entityManager.getTransaction().rollback();
-		} 
+		}
 
 	}
 
@@ -60,9 +59,9 @@ public class DAO {
 		return entityManager.find(classe, id);
 
 	}
-	
+
 	public <T> void excluir(T entidade) {
-		
+
 		try {
 			entityManager.getTransaction().begin();
 			entityManager.remove(entidade);
@@ -71,7 +70,7 @@ public class DAO {
 			e.printStackTrace();
 			entityManager.getTransaction().rollback();
 		}
-		
+
 	}
 
 }
