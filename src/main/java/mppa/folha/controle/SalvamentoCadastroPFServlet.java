@@ -9,11 +9,13 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import mppa.folha.dao.DAO;
 import mppa.folha.modelo.PessoaFisica;
@@ -23,7 +25,7 @@ public class SalvamentoCadastroPFServlet extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		
 		String queryString = req.getQueryString();
 		String[] parametrosRequisicao = queryString.split("&");
 
@@ -50,11 +52,17 @@ public class SalvamentoCadastroPFServlet extends HttpServlet {
 
 		} catch (ParseException e) {
 			e.printStackTrace();
+		} catch (ArrayIndexOutOfBoundsException e) {
+		
+			HttpSession sessao = req.getSession();
+			sessao.setAttribute("mensagem", "Erro no campo DATA");
+			req.getRequestDispatcher("/WEB-INF/jsp/erro.jsp").forward(req, resp);
+				
 		}
 
 	}
 
-	private Date extrairData(String data) throws ParseException {
+	private Date extrairData(String data) throws ParseException, ArrayIndexOutOfBoundsException {
 
 		String[] componentesData = data.split("-");
 

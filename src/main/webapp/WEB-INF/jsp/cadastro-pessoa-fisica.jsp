@@ -11,7 +11,7 @@
 	
 		<form action="salvar-pessoa-fisica">
 			<label for="nome">NOME: </label> 
-			<input id="nome" name="nome" type="text" required="required" /> 
+			<input id="nome" name="nome" type="text" required="required" pattern="[a-zA-Z\s]*" /> 
 			<label for="data_nascimento">DATA DE NASCIMENTO: </label>
 			<input id="data_nascimento" name="data_nascimento" type="date" />
 			<label for="sexo">SEXO: </label>

@@ -11,14 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/cadastro/pessoa-fisica")
 public class CadastroPessoaFisicaServlet extends HttpServlet {
-	
+
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("teste");
+		
 		RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/jsp/cadastro-pessoa-fisica.jsp");
-		
+
 		requestDispatcher.forward(req, resp);
-		
+
 	}
-	
+
 }
