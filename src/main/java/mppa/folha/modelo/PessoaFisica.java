@@ -1,5 +1,7 @@
 package mppa.folha.modelo;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -31,14 +33,25 @@ public class PessoaFisica {
 		return nome;
 	}
 
-	public PessoaFisica setNome(String nome) {
+	public PessoaFisica setNome(String nome) throws IllegalArgumentException {
+
+		if(nome == "")
+			throw new IllegalArgumentException("nome vazio");
+		
 		this.nome = nome;
+		
 		return this;
+		
 	}
 	
-	public PessoaFisica setDataNascimento(Date dataNascimento) {
-		this.data_nascimento = dataNascimento;
+	public PessoaFisica setDataNascimento(String data) throws ParseException {
+		
+		SimpleDateFormat formatoData = new SimpleDateFormat("yyyy-MM-dd");
+		
+		this.data_nascimento = formatoData.parse(data);
+		
 		return this;
+		
 	}
 	
 	public PessoaFisica setSexo(Character sexo) {
@@ -47,8 +60,10 @@ public class PessoaFisica {
 	}
 	
 	public PessoaFisica setCPF(String cpf) {
-		this.cpf = cpf;
+		
+		this.cpf = cpf != "" ? cpf : null;
 		return this;
+		
 	}
 	
 	@Override

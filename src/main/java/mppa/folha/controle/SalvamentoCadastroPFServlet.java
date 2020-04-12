@@ -25,7 +25,7 @@ public class SalvamentoCadastroPFServlet extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+
 		String queryString = req.getQueryString();
 		String[] parametrosRequisicao = queryString.split("&");
 
@@ -43,34 +43,22 @@ public class SalvamentoCadastroPFServlet extends HttpServlet {
 
 		try {
 
-			PessoaFisica pf = new PessoaFisica().setNome(parametros.get("nome"))
-					.setDataNascimento(extrairData(parametros.get("data_nascimento")))
-					.setSexo(parametros.get("sexo").charAt(0)).setCPF(parametros.get("cpf"));
+			PessoaFisica pf = new PessoaFisica()
+					.setNome(parametros.get("nome"))
+					.setDataNascimento(parametros.get("data_nascimento"))
+					.setSexo(parametros.get("sexo").charAt(0))
+					.setCPF(parametros.get("cpf"));
 
 			DAO dao = DAO.getInstancia();
 			dao.criar(pf);
 
 		} catch (ParseException e) {
-			e.printStackTrace();
-		} catch (ArrayIndexOutOfBoundsException e) {
-		
+
 			HttpSession sessao = req.getSession();
 			sessao.setAttribute("mensagem", "Erro no campo DATA");
 			req.getRequestDispatcher("/WEB-INF/jsp/erro.jsp").forward(req, resp);
-				
+
 		}
-
-	}
-
-	private Date extrairData(String data) throws ParseException, ArrayIndexOutOfBoundsException {
-
-		String[] componentesData = data.split("-");
-
-		DateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
-
-		data = componentesData[2] + "/" + componentesData[1] + "/" + componentesData[0];
-
-		return formatoData.parse(data);
 
 	}
 
