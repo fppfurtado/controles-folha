@@ -3,6 +3,7 @@ package mppa.folha.dao;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceException;
 
 public class DAO {
 
@@ -28,17 +29,18 @@ public class DAO {
 		return entityManager;
 	}
 
-	public <T> T criar(T entidade) {
+	public <T> T criar(T entidade) throws PersistenceException {
+		
 		try {
 			entityManager.getTransaction().begin();
 			entityManager.persist(entidade);
 			entityManager.getTransaction().commit();
 			return entidade;
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (PersistenceException e) {
 			entityManager.getTransaction().rollback();
+			throw new PersistenceException("erro de gravação no Banco de Dados: valor duplicado ou inválido.");			
 		}
-		return null;
+		
 	}
 
 	public <T> void atualizar(T entidade) {
