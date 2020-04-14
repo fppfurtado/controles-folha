@@ -38,7 +38,7 @@ public class DAO {
 			return entidade;
 		} catch (PersistenceException e) {
 			entityManager.getTransaction().rollback();
-			throw new PersistenceException("erro de gravação no Banco de Dados: valor duplicado ou inválido.");			
+			throw new PersistenceException("Erro de gravação no Banco de Dados: valor duplicado ou inválido.");			
 		}
 		
 	}
