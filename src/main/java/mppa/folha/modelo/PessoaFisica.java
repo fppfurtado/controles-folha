@@ -36,7 +36,7 @@ public class PessoaFisica {
 	public PessoaFisica setNome(String nome) throws IllegalArgumentException {
 
 		if(nome == "")
-			throw new IllegalArgumentException("nome vazio");
+			throw new IllegalArgumentException("Nome vazio.");
 		
 		this.nome = nome;
 		
@@ -46,9 +46,14 @@ public class PessoaFisica {
 	
 	public PessoaFisica setDataNascimento(String data) throws ParseException {
 		
-		SimpleDateFormat formatoData = new SimpleDateFormat("yyyy-MM-dd");
-		
-		this.data_nascimento = formatoData.parse(data);
+		try {
+			
+			SimpleDateFormat formatoData = new SimpleDateFormat("yyyy-MM-dd");			
+			this.data_nascimento = formatoData.parse(data);
+			
+		} catch (ParseException e) {
+			throw new ParseException("Data com erro.", e.getErrorOffset());
+		}
 		
 		return this;
 		

@@ -45,7 +45,11 @@ public class PessoaJuridica {
 		return nome_fantasia;
 	}
 
-	public PessoaJuridica setNome_fantasia(String nome_fantasia) {
+	public PessoaJuridica setNome_fantasia(String nome_fantasia) throws IllegalArgumentException {
+		
+		if(nome_fantasia == "")
+			throw new IllegalArgumentException("Nome fantasia em branco.");
+		
 		this.nome_fantasia = nome_fantasia;
 		return this;
 	}
