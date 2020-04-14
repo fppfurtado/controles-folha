@@ -37,16 +37,25 @@ public class SalvamentoCadastroPJServlet extends HttpServlet {
 
 		}
 		
-		PessoaJuridica pessoaJuridica = new PessoaJuridica()
-				.setNome_fantasia(parametros.get("nome_fantasia"))
-				.setRazao_social(parametros.get("razao_social"))
-				.setAcronimo(parametros.get("acronimo"))
-				.setCnpj(parametros.get("cnpj"))
-				.setEsfera(ESFERAS.valueOf(parametros.get("esfera")))
-				.setPoder(PODERES.valueOf(parametros.get("poder")));
-		
-		DAO dao = DAO.getInstancia();
-		dao.criar(pessoaJuridica);
+		try {
+			
+			PessoaJuridica pessoaJuridica = new PessoaJuridica()
+					.setNome_fantasia(parametros.get("nome_fantasia"))
+					.setRazao_social(parametros.get("razao_social"))
+					.setAcronimo(parametros.get("acronimo"))
+					.setCnpj(parametros.get("cnpj"))
+					.setEsfera(ESFERAS.valueOf(parametros.get("esfera")))
+					.setPoder(PODERES.valueOf(parametros.get("poder")));
+			
+			DAO dao = DAO.getInstancia();
+			dao.criar(pessoaJuridica);
+			
+		} catch (Exception e) {
+			
+			req.getSession().setAttribute("erro", e.getMessage());
+			req.getRequestDispatcher("/WEB-INF/jsp/erro.jsp").forward(req, resp);;
+			
+		}
 		
 	}
 

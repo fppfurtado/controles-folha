@@ -2,20 +2,15 @@ package mppa.folha.controle;
 
 import java.io.IOException;
 import java.net.URLDecoder;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import mppa.folha.dao.DAO;
 import mppa.folha.modelo.PessoaFisica;
@@ -52,14 +47,18 @@ public class SalvamentoCadastroPFServlet extends HttpServlet {
 			DAO dao = DAO.getInstancia();
 			dao.criar(pf);
 
-		} catch (ParseException e) {
-
-			HttpSession sessao = req.getSession();
-			sessao.setAttribute("mensagem", "Erro no campo DATA");
-			req.getRequestDispatcher("/WEB-INF/jsp/erro.jsp").forward(req, resp);
-
+		} catch (Exception e) {
+			tratarExcecao(req, resp, e);
 		}
 
+	}
+
+	private void tratarExcecao(HttpServletRequest req, HttpServletResponse resp, Exception e)
+			throws ServletException, IOException {
+		
+		req.getSession().setAttribute("erro", e.getMessage());
+		req.getRequestDispatcher("/WEB-INF/jsp/erro.jsp").forward(req, resp);
+		
 	}
 
 }
