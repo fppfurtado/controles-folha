@@ -7,7 +7,7 @@
 </head>
 	<body>
 	
-		<h1>CADASTRO PESSOA</h1>
+		<h1>CADASTRO PESSOA FÍSICA</h1>
 	
 		<form action="salvar-pessoa-fisica">
 			<label for="nome">NOME: </label> 
