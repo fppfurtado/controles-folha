@@ -6,5 +6,5 @@ public enum ESFERAS {
 	ESTADUAL,
 	DISTRITAL,
 	MUNICIPAL
-
+	
 }

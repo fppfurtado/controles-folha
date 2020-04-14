@@ -2,6 +2,7 @@ package mppa.folha.modelo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,9 +23,9 @@ public class PessoaJuridica {
 	private String acronimo;
 	@Column(unique = true)
 	private String cnpj;
-	@Enumerated
+	@Enumerated(EnumType.STRING)
 	private ESFERAS esfera;
-	@Enumerated
+	@Enumerated(EnumType.STRING)
 	private PODERES poder;
 
 	public PessoaJuridica() {

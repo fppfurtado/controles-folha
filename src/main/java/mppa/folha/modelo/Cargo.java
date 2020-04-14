@@ -2,6 +2,7 @@ package mppa.folha.modelo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,7 +16,7 @@ public class Cargo {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Enumerated
+	@Enumerated(EnumType.STRING)
 	private FORMAS_NOMEACAO forma_nomeacao;
 	@Column(nullable = false)
 	private String denominacao;
