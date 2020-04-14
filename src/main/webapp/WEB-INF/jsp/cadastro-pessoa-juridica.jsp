@@ -8,7 +8,7 @@
 
 	<h1>CADASTRO PESSOA JURÍDICA</h1>
 
-	<form action="/cadastro/pessoa-juridica">
+	<form action="salvar-pessoa-juridica">
 	
 		<label for="nf">NOME FANTASIA: </label>
 		<input type="text" id="nf" name="nome_fantasia" />
@@ -17,20 +17,20 @@
 		<label for="acrn">ACRÔNIMO: </label>
 		<input type="text" id="acrn" name="acronimo" />
 		<label for="cnpj">CNPJ: </label>
-		<input type="text" id="cnpj" name="cnpj" maxlength="17" pattern="[0-9]{2}.[0-9]{3}.[0-9]{3}/[0-9]{4}-[0-9]{2}" onkeyup="formatarCnpj(event)" />
+		<input type="text" id="cnpj" name="cnpj" maxlength="18" pattern="[0-9]{2}.[0-9]{3}.[0-9]{3}/[0-9]{4}-[0-9]{2}" onkeyup="formatarCnpj(event)" />
 		<label for="esf">ESFERA GOVERNAMENTAL: </label>
 		<select id="esf" name="esfera">
-			<option value="f">FEDERAL</option>
-			<option value="e">ESTADUAL</option>
-			<option value="d">DISTRITAL</option>
-			<option value="m">MUNICIPAL</option>
+			<option value="FEDERAL">FEDERAL</option>
+			<option value="ESTADUAL">ESTADUAL</option>
+			<option value="DISTRITAL">DISTRITAL</option>
+			<option value="MUNICIPAL">MUNICIPAL</option>
 		</select>
 		<label for="pdr">PODER: </label>
 		<select id="pdr" name="poder">
-			<option value="e">EXECUTIVO</option>
-			<option value="l">LEGISLATIVO</option>
-			<option value="j">JUDICIARIO</option>
-			<option value="oa">ÓRGÃO AUTÔNOMO</option>
+			<option value="EXECUTIVO">EXECUTIVO</option>
+			<option value="LEGISLATIVO">LEGISLATIVO</option>
+			<option value="JUDICIARIO">JUDICIARIO</option>
+			<option value="ORGAO_AUTONOMO">ÓRGÃO AUTÔNOMO</option>
 		</select>
 		
 		<input type="submit" value="SALVAR" />
