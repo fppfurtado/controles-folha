@@ -11,15 +11,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import mppa.folha.dao.CargoDao;
 import mppa.folha.dao.DAO;
 import mppa.folha.dao.PessoaFisicaDao;
 import mppa.folha.dao.PessoaJuridicaDao;
+import mppa.folha.modelo.Cargo;
 import mppa.folha.modelo.PessoaJuridica;
 import mppa.folha.modelo.enumeracoes.ESFERAS;
+import mppa.folha.modelo.enumeracoes.FORMAS_NOMEACAO;
 import mppa.folha.modelo.enumeracoes.PODERES;
 
-@WebServlet("/cadastro/salvar-pessoa-juridica")
-public class SalvamentoCadastroPJServlet extends HttpServlet {
+@WebServlet("/cadastro/salvar-cargo")
+public class SalvamentoCadastroCargoServlet extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -41,16 +44,16 @@ public class SalvamentoCadastroPJServlet extends HttpServlet {
 		
 		try {
 			
-			PessoaJuridica pessoaJuridica = new PessoaJuridica()
-					.setNome_fantasia(parametros.get("nome_fantasia"))
-					.setRazao_social(parametros.get("razao_social"))
-					.setAcronimo(parametros.get("acronimo"))
-					.setCnpj(parametros.get("cnpj"))
-					.setEsfera(ESFERAS.valueOf(parametros.get("esfera")))
-					.setPoder(PODERES.valueOf(parametros.get("poder")));
+			DAO<PessoaJuridica> daoPj = PessoaJuridicaDao.getInstancia();			
+			PessoaJuridica organizacao = daoPj.buscar(Long.parseLong(parametros.get("organizacao")));
 			
-			DAO<PessoaJuridica> dao = PessoaJuridicaDao.getInstancia();
-			dao.criar(pessoaJuridica);
+			Cargo cargo = new Cargo()
+					.setDenominacao(parametros.get("denominacao"))
+					.setForma_nomeacao(FORMAS_NOMEACAO.valueOf(parametros.get("forma_nomeacao")))
+					.setOrganizacao(organizacao);
+			
+			DAO<Cargo> daoCargo = CargoDao.getInstancia();			
+			daoCargo.criar(cargo);
 			
 		} catch (Exception e) {
 			

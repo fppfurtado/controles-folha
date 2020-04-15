@@ -1,27 +1,16 @@
 package mppa.folha.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
 
-public class DAO {
+public abstract class DAO<T> {
 
-	private static DAO instancia;
-	protected EntityManager entityManager;
+	protected static EntityManager entityManager;
 
-	public static DAO getInstancia() {
-		if (instancia == null) {
-			instancia = new DAO();
-		}
-		return instancia;
-	}
-
-	private DAO() {
-		entityManager = getEntityManager();
-	}
-
-	protected EntityManager getEntityManager() {
+	public static EntityManager getEntityManager() {
 		if (entityManager == null) {
 			entityManager = Persistence.createEntityManagerFactory("folha").createEntityManager();
 		}
@@ -29,8 +18,8 @@ public class DAO {
 		return entityManager;
 	}
 
-	public <T> T criar(T entidade) throws PersistenceException {
-		
+	public T criar(T entidade) {
+
 		try {
 			entityManager.getTransaction().begin();
 			entityManager.persist(entidade);
@@ -38,12 +27,12 @@ public class DAO {
 			return entidade;
 		} catch (PersistenceException e) {
 			entityManager.getTransaction().rollback();
-			throw new PersistenceException("Erro de gravação no Banco de Dados: valor duplicado ou inválido.");			
+			throw new PersistenceException("Erro de gravação no Banco de Dados: valor duplicado ou inválido.");
 		}
-		
+
 	}
 
-	public <T> void atualizar(T entidade) {
+	public void alterar(T entidade) {
 
 		try {
 			entityManager.getTransaction().begin();
@@ -56,13 +45,9 @@ public class DAO {
 
 	}
 
-	public <T> T buscar(Class<T> classe, Long id) {
+	public abstract T buscar(Long id);
 
-		return entityManager.find(classe, id);
-
-	}
-
-	public <T> void excluir(T entidade) {
+	public void excluir(T entidade) {
 
 		try {
 			entityManager.getTransaction().begin();
@@ -74,5 +59,7 @@ public class DAO {
 		}
 
 	}
+
+	public abstract List<T> getLista();
 
 }

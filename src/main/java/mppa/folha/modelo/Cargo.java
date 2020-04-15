@@ -40,8 +40,20 @@ public class Cargo {
 	public String getDenominacao() {
 		return denominacao;
 	}
-	public void setDenominacao(String denominacao) {
+	
+	public Cargo setDenominacao(String denominacao) {
 		this.denominacao = denominacao;
+		return this;
+	}
+	
+	public Cargo setForma_nomeacao(FORMAS_NOMEACAO forma_nomeacao) {
+		this.forma_nomeacao = forma_nomeacao;
+		return this;
+	}
+	
+	public Cargo setOrganizacao(PessoaJuridica organizacao) {
+		this.organizacao = organizacao;
+		return this;
 	}
 	
 	@Override

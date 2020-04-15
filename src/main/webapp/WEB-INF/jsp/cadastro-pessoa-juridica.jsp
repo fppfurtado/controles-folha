@@ -12,7 +12,7 @@
 	<form action="salvar-pessoa-juridica">
 	
 		<label for="nf">NOME FANTASIA: </label>
-		<input type="text" id="nf" name="nome_fantasia" />
+		<input type="text" id="nf" name="nome_fantasia" required="required" />
 		<label for="rs">RAZÃO SOCIAL: </label>
 		<input type="text" id="rs" name="razao_social" />
 		<label for="acrn">ACRÔNIMO: </label>

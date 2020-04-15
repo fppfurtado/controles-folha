@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import mppa.folha.dao.DAO;
+import mppa.folha.dao.PessoaFisicaDao;
 import mppa.folha.modelo.PessoaFisica;
 
 @WebServlet("/cadastro/salvar-pessoa-fisica")
@@ -44,7 +45,7 @@ public class SalvamentoCadastroPFServlet extends HttpServlet {
 					.setSexo(parametros.get("sexo").charAt(0))
 					.setCPF(parametros.get("cpf"));
 
-			DAO dao = DAO.getInstancia();
+			DAO<PessoaFisica> dao = PessoaFisicaDao.getInstancia();
 			dao.criar(pf);
 
 		} catch (Exception e) {

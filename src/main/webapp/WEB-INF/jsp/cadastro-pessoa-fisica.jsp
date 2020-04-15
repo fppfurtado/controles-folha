@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Cadastro Pessoa</title>
+	<title>Cadastro PF</title>
 	<link href="../resources/estilo.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="../resources/validacaoFrontEnd.js"></script>
 </head>
