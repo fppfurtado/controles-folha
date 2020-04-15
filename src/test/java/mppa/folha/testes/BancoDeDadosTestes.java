@@ -2,10 +2,14 @@ package mppa.folha.testes;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 
 import mppa.folha.dao.DAO;
+import mppa.folha.dao.PessoaFisicaDao;
 import mppa.folha.modelo.Cargo;
+import mppa.folha.modelo.PessoaFisica;
 import mppa.folha.modelo.enumeracoes.FORMAS_NOMEACAO;
 
 class BancoDeDadosTestes {
@@ -13,11 +17,9 @@ class BancoDeDadosTestes {
 	@Test
 	void test() {
 		
-		DAO dao = DAO.getInstancia();
+		DAO<PessoaFisica> dao = PessoaFisicaDao.getInstancia();
 		
-		Cargo cargo = dao.criar(new Cargo("Assessor", FORMAS_NOMEACAO.EM_COMISSAO, null));
-		
-		assertEquals(1, cargo.getId());
+		assertEquals(dao.getLista().getClass(), ArrayList.class);
 		
 	}
 
