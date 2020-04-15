@@ -22,8 +22,13 @@ public class UnidadeAdministrativa {
 		return denominacao;
 	}
 	
-	public void setDenominacao(String denominacao) {
+	public UnidadeAdministrativa setDenominacao(String denominacao) {
+		
+		if(denominacao.equals(""))
+			throw new IllegalArgumentException("A denominação informada é inválida");
+		
 		this.denominacao = denominacao;
+		return this;
 	}
 	
 	@Override
