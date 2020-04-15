@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="mppa.folha.dao.PessoaJuridicaDao" %>
 
 <!DOCTYPE html>
 <html>
@@ -22,10 +23,10 @@
 		<label for="org">ORGANIZAÇÃO: </label> 
 		<select id="org" name="organizacao">
 
-			<jsp:useBean id="dao" class="mppa.folha.dao.CargoDao" />
+			<c:set var="dao" value="${PessoaJuridicaDao.getInstancia()}" />
 			
 			<c:forEach var="organizacao" items="${dao.lista}">
-				<option value="${organizacao.id}" >${organizacao.nome_Fantasia}</option>
+				<option value="${organizacao.id}" >${organizacao.nome_fantasia}</option>
 			</c:forEach>
 			
 		</select>
