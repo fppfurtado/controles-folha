@@ -35,8 +35,8 @@ public class PessoaFisica {
 
 	public PessoaFisica setNome(String nome) throws IllegalArgumentException {
 
-		if(nome == "")
-			throw new IllegalArgumentException("Nome vazio.");
+		if(nome.equals(""))
+			throw new IllegalArgumentException("O nome informado é inávlido");
 		
 		this.nome = nome;
 		
@@ -52,7 +52,7 @@ public class PessoaFisica {
 			this.data_nascimento = formatoData.parse(data);
 			
 		} catch (ParseException e) {
-			throw new ParseException("Data com erro.", e.getErrorOffset());
+			throw new ParseException("A data informada é inválida", e.getErrorOffset());
 		}
 		
 		return this;
@@ -66,7 +66,7 @@ public class PessoaFisica {
 	
 	public PessoaFisica setCPF(String cpf) {
 		
-		this.cpf = cpf != "" ? cpf : null;
+		this.cpf = cpf.equals("") ? null : cpf;
 		return this;
 		
 	}

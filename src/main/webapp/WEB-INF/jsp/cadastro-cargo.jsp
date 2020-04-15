@@ -14,14 +14,14 @@
 
 	<form action="salvar-cargo">
 		<label for="den">DENOMINAÇÃO: </label> 
-		<input id="den"	name="denominacao" type="text" required="required"	pattern="[a-zA-Zãâáêéíõôóûúç\s]*" /> 
+		<input id="den"	name="denominacao" type="text" required="required" pattern="[a-zA-Zãâáêéíõôóûúç\s]*" /> 
 		<label for="fn">FORMA NOMEAÇÃO: </label> 
-		<select id="fn" name="forma_nomeacao">
+		<select id="fn" name="forma_nomeacao" required="required">
 			<option value="EFETIVO">EFETIVO</option>
 			<option value="EM_COMISSAO">EM COMISSÃO</option>
 		</select> 
 		<label for="org">ORGANIZAÇÃO: </label> 
-		<select id="org" name="organizacao">
+		<select id="org" name="organizacao" required="required" >
 
 			<c:set var="dao" value="${PessoaJuridicaDao.getInstancia()}" />
 			

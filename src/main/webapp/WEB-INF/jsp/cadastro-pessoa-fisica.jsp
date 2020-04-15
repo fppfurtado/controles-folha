@@ -20,7 +20,7 @@
 				<option value="f">feminino</option>
 			</select>
 			<label for="cpf">CPF: </label>
-			<input id="cpf" name="cpf" type="text" required="required" pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}" maxlength="14" onkeyup="formatarCpf(event)" />
+			<input id="cpf" name="cpf" type="text" pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}" maxlength="14" onkeyup="formatarCpf(event)" />
 	
 			<input type="submit" value="SALVAR">
 	

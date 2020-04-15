@@ -47,8 +47,8 @@ public class PessoaJuridica {
 
 	public PessoaJuridica setNome_fantasia(String nome_fantasia) throws IllegalArgumentException {
 		
-		if(nome_fantasia == "")
-			throw new IllegalArgumentException("Nome fantasia em branco.");
+		if(nome_fantasia.equals(""))
+			throw new IllegalArgumentException("O nome fantasia informado é inválido");
 		
 		this.nome_fantasia = nome_fantasia;
 		return this;
