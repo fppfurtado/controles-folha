@@ -1,5 +1,7 @@
 package mppa.folha.modelo;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -7,6 +9,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import mppa.folha.modelo.enumeracoes.ESFERAS;
 import mppa.folha.modelo.enumeracoes.PODERES;
@@ -27,6 +30,14 @@ public class PessoaJuridica {
 	private ESFERAS esfera;
 	@Enumerated(EnumType.STRING)
 	private PODERES poder;
+	@OneToMany
+	private List<UnidadeAdministrativa> unidadesAdministrativas;
+	@OneToMany
+	private List<Cargo> cargos;
+	@OneToMany
+	private List<VinculoFuncional> vinculosFuncionais;
+	@OneToMany
+	private List<Lotacao> lotacoes;
 
 	public PessoaJuridica() {
 
@@ -92,6 +103,22 @@ public class PessoaJuridica {
 	
 	public Long getId() {
 		return id;
+	}
+	
+	public List<UnidadeAdministrativa> getUnidadesAdministrativas() {
+		return unidadesAdministrativas;
+	}
+	
+	public List<Cargo> getCargos() {
+		return cargos;
+	}
+	
+	public List<VinculoFuncional> getVinculosFuncionais() {
+		return vinculosFuncionais;
+	}
+	
+	public List<Lotacao> getLotacoes() {
+		return lotacoes;
 	}
 
 	@Override

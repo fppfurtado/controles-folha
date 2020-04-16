@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page import="mppa.folha.dao.PessoaJuridicaDao" %>
+<%-- <%@ page import="mppa.folha.dao.PessoaJuridicaDao" %> --%>
 
 <!DOCTYPE html>
 <html>
@@ -20,7 +20,7 @@
 			<option value="EFETIVO">EFETIVO</option>
 			<option value="EM_COMISSAO">EM COMISSÃO</option>
 		</select> 
-		<label for="org">ORGANIZAÇÃO: </label> 
+		<%-- <label for="org">ORGANIZAÇÃO: </label> 
 		<select id="org" name="organizacao" required="required" >
 
 			<c:set var="dao" value="${PessoaJuridicaDao.getInstancia()}" />
@@ -29,7 +29,7 @@
 				<option value="${organizacao.id}" >${organizacao.nome_fantasia}</option>
 			</c:forEach>
 			
-		</select>
+		</select> --%>
 
 		<input type="submit" value="SALVAR">
 

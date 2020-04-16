@@ -44,13 +44,9 @@ public class SalvamentoCadastroCargoServlet extends HttpServlet {
 		
 		try {
 			
-			DAO<PessoaJuridica> daoPj = PessoaJuridicaDao.getInstancia();			
-			PessoaJuridica organizacao = daoPj.buscar(Long.parseLong(parametros.get("organizacao")));
-			
 			Cargo cargo = new Cargo()
 					.setDenominacao(parametros.get("denominacao"))
-					.setForma_nomeacao(FORMAS_NOMEACAO.valueOf(parametros.get("forma_nomeacao")))
-					.setOrganizacao(organizacao);
+					.setForma_nomeacao(FORMAS_NOMEACAO.valueOf(parametros.get("forma_nomeacao")));
 			
 			DAO<Cargo> daoCargo = CargoDao.getInstancia();			
 			daoCargo.criar(cargo);

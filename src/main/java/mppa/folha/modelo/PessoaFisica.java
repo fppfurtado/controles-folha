@@ -46,16 +46,22 @@ public class PessoaFisica {
 	
 	public PessoaFisica setDataNascimento(String data) throws ParseException {
 		
+		if(data.equals("")) {
+			this.data_nascimento = null;
+			return this;
+		}
+			
+		
 		try {
 			
 			SimpleDateFormat formatoData = new SimpleDateFormat("yyyy-MM-dd");			
 			this.data_nascimento = formatoData.parse(data);
 			
+			return this;
+			
 		} catch (ParseException e) {
 			throw new ParseException("A data informada é inválida", e.getErrorOffset());
 		}
-		
-		return this;
 		
 	}
 	

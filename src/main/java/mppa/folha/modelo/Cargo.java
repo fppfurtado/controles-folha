@@ -21,8 +21,6 @@ public class Cargo {
 	private FORMAS_NOMEACAO forma_nomeacao;
 	@Column(nullable = false)
 	private String denominacao;
-	@OneToOne
-	private PessoaJuridica organizacao;
 
 	public Cargo() {
 
@@ -50,14 +48,9 @@ public class Cargo {
 		return this;
 	}
 
-	public Cargo setOrganizacao(PessoaJuridica organizacao) {
-		this.organizacao = organizacao;
-		return this;
-	}
-
 	@Override
 	public String toString() {
-		return "id: " + id + "\n" + "denominacao: " + denominacao + "\n" + "organizacao: " + organizacao;
+		return "id: " + id + "\n" + "denominacao: " + denominacao;
 	}
 
 }

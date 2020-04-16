@@ -13,6 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity(name = "documento_margem")
 public class DocumentoMargem {
@@ -21,14 +23,13 @@ public class DocumentoMargem {
 	private Long id;
 	@Column(nullable = false)
 	private int numero_controle;
+	@Temporal(TemporalType.DATE)
 	@Column(nullable = false)
 	private Date data_emissao;
 	@Column(nullable = false)
 	private BigDecimal margem_consignavel;
 	private String observacao;
 	private Boolean cancelamento;
-	@OneToOne
-	private VinculoFuncional vinculoRequerente;
 	@OneToOne
 	private VinculoFuncional vinculoDeclarante;
 	@OneToMany(mappedBy = "documento_margem")
