@@ -6,7 +6,6 @@
 <head>
 <title>Cadastro Cargo</title>
 <link href="../resources/estilo.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="../resources/validacaoFrontEnd.js"></script>
 </head>
 <body>
 
