@@ -28,6 +28,8 @@ public class VinculoFuncional {
 	@OneToOne
 	private Cargo cargo;
 	@OneToMany
+	private List<Lotacao> lotacoes;
+	@OneToMany
 	private List<DocumentoMargem> documentosMargem;
 	
 	public VinculoFuncional() {

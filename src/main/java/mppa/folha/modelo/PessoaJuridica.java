@@ -36,9 +36,7 @@ public class PessoaJuridica {
 	private List<Cargo> cargos;
 	@OneToMany
 	private List<VinculoFuncional> vinculosFuncionais;
-	@OneToMany
-	private List<Lotacao> lotacoes;
-
+	
 	public PessoaJuridica() {
 
 	}
@@ -117,11 +115,7 @@ public class PessoaJuridica {
 		return vinculosFuncionais;
 	}
 	
-	public List<Lotacao> getLotacoes() {
-		return lotacoes;
-	}
-
-	@Override
+		@Override
 	public String toString() {
 		return "id: " + id + 
 				"\n" + "nome_fantasia: " + nome_fantasia + 
