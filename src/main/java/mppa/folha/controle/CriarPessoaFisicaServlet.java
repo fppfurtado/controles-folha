@@ -9,13 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/cadastro/pessoa-fisica")
-public class CadastroPessoaFisicaServlet extends HttpServlet {
+@WebServlet("/criar/pessoa-fisica")
+public class CriarPessoaFisicaServlet extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/jsp/cadastro-pessoa-fisica.jsp");
+		RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/jsp/form-criar-pf.jsp");
 
 		requestDispatcher.forward(req, resp);
 

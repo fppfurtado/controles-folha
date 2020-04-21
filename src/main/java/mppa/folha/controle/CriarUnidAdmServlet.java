@@ -9,16 +9,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/cadastro/pessoa-juridica")
-public class CadastroPessoaJuridicaServlet extends HttpServlet {
+@WebServlet("/criar/unidade-adm")
+public class CriarUnidAdmServlet extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/cadastro-pessoa-juridica.jsp");
-		
-		dispatcher.forward(req, resp);
-		
+		RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/jsp/form-criar-unid-adm.jsp");
+
+		requestDispatcher.forward(req, resp);
+
 	}
-	
+
 }
