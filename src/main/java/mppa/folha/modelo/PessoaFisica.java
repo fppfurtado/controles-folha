@@ -28,6 +28,10 @@ public class PessoaFisica {
 	public PessoaFisica() {
 		
 	}
+	
+	public Long getId() {
+		return id;
+	}
 
 	public String getNome() {
 		return nome;
@@ -42,6 +46,10 @@ public class PessoaFisica {
 		
 		return this;
 		
+	}
+	
+	public Date getData_nascimento() {
+		return data_nascimento;
 	}
 	
 	public PessoaFisica setDataNascimento(String data) throws ParseException {
@@ -65,9 +73,17 @@ public class PessoaFisica {
 		
 	}
 	
-	public PessoaFisica setSexo(Character sexo) {
-		this.sexo = sexo;
+	public Character getSexo() {
+		return sexo;
+	}
+	
+	public PessoaFisica setSexo(String sexo) {
+		this.sexo = sexo.charAt(0);
 		return this;
+	}
+	
+	public String getCpf() {
+		return cpf;
 	}
 	
 	public PessoaFisica setCPF(String cpf) {
