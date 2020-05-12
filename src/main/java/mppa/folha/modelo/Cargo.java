@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-import mppa.folha.modelo.enumeracoes.FORMAS_NOMEACAO;
+import mppa.folha.modelo.enumeracoes.FormasNomeacao;
 
 @Entity(name = "cargo")
 public class Cargo {
@@ -18,7 +18,7 @@ public class Cargo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@Enumerated(EnumType.STRING)
-	private FORMAS_NOMEACAO forma_nomeacao;
+	private FormasNomeacao forma_nomeacao;
 	@Column(nullable = false)
 	private String denominacao;
 
@@ -43,7 +43,7 @@ public class Cargo {
 		return this;
 	}
 
-	public Cargo setForma_nomeacao(FORMAS_NOMEACAO forma_nomeacao) {
+	public Cargo setForma_nomeacao(FormasNomeacao forma_nomeacao) {
 		this.forma_nomeacao = forma_nomeacao;
 		return this;
 	}

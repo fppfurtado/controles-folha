@@ -11,8 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import mppa.folha.modelo.enumeracoes.ESFERAS;
-import mppa.folha.modelo.enumeracoes.PODERES;
+import mppa.folha.modelo.enumeracoes.Esferas;
+import mppa.folha.modelo.enumeracoes.Poderes;
 
 @Entity(name = "pessoa_juridica")
 public class PessoaJuridica {
@@ -27,9 +27,9 @@ public class PessoaJuridica {
 	@Column(unique = true)
 	private String cnpj;
 	@Enumerated(EnumType.STRING)
-	private ESFERAS esfera;
+	private Esferas esfera;
 	@Enumerated(EnumType.STRING)
-	private PODERES poder;
+	private Poderes poder;
 	@OneToMany
 	private List<UnidadeAdministrativa> unidadesAdministrativas;
 	@OneToMany
@@ -81,20 +81,20 @@ public class PessoaJuridica {
 		return this;
 	}
 
-	public ESFERAS getEsfera() {
+	public Esferas getEsfera() {
 		return esfera;
 	}
 
-	public PessoaJuridica setEsfera(ESFERAS esfera) {
+	public PessoaJuridica setEsfera(Esferas esfera) {
 		this.esfera = esfera;
 		return this;
 	}
 
-	public PODERES getPoder() {
+	public Poderes getPoder() {
 		return poder;
 	}
 
-	public PessoaJuridica setPoder(PODERES poder) {
+	public PessoaJuridica setPoder(Poderes poder) {
 		this.poder = poder;
 		return this;
 	}
