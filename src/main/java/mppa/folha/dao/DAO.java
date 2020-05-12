@@ -32,7 +32,7 @@ public abstract class DAO<T> {
 
 	}
 
-	public void alterar(T entidade) {
+	public void atualizar(T entidade) {
 
 		try {
 			entityManager.getTransaction().begin();
@@ -59,7 +59,9 @@ public abstract class DAO<T> {
 		}
 
 	}
-
-	public abstract List<T> getLista();
+	
+	public abstract List<T> getRegistrosPaginacao(int pagina, int registrosPorPagina);
+	
+	public abstract Long contarRegistros();
 
 }

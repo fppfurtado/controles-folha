@@ -43,4 +43,16 @@ public class PessoaJuridicaDao extends DAO<PessoaJuridica> {
 
 	}
 
+	@Override
+	public List<PessoaJuridica> getRegistrosPaginacao(int pagina, int registrosPorPagina) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public Long contarRegistros() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

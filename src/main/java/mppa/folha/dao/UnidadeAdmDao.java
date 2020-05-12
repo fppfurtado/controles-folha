@@ -45,4 +45,16 @@ public class UnidadeAdmDao extends DAO<UnidadeAdministrativa> {
 
 	}
 
+	@Override
+	public List<UnidadeAdministrativa> getRegistrosPaginacao(int pagina, int registrosPorPagina) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public Long contarRegistros() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

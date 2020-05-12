@@ -44,4 +44,16 @@ public class CargoDao extends DAO<Cargo> {
 
 	}
 
+	@Override
+	public List<Cargo> getRegistrosPaginacao(int pagina, int registrosPorPagina) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public Long contarRegistros() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
