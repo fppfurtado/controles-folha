@@ -1,3 +1,49 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.menu-lateral {
+	position: fixed;
+	width: 200px;
+	height: 100%;
+	background: gray; 
+}
+
+iframe {
+	margin-left: 200px;
+	width: calc(100% - 200px);
+	height: 100%;
+	position: absolute;
+}
+
+ul {
+	display: block;
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+
 input, label {
 	display: block;
+}
+
+.titulo {
+	display: inline-block;
+}
+
+.bt {
+	display: inline-block;
+	background-color: gray;
+	color: white;
+	padding: 5px;
+}
+
+.paginacao {
+	display: block;
+	margin: 0 auto;
+	width: 40px;
+	text-align: center;
 }
