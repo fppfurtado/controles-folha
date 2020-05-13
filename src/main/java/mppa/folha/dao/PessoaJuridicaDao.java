@@ -6,6 +6,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import mppa.folha.modelo.PessoaFisica;
 import mppa.folha.modelo.PessoaJuridica;
 
 public class PessoaJuridicaDao extends DAO<PessoaJuridica> {
@@ -30,29 +31,33 @@ public class PessoaJuridicaDao extends DAO<PessoaJuridica> {
 		return entityManager.find(PessoaJuridica.class, id);
 	}
 
-	public List<PessoaJuridica> getLista() {
-
+	@Override
+	public List<PessoaJuridica> getRegistrosPaginacao(int pagina, int registrosPorPagina) {
+		
 		Class<PessoaJuridica> classe = PessoaJuridica.class;
 
 		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 		CriteriaQuery<PessoaJuridica> criteriaQuery = criteriaBuilder.createQuery(classe);
 		Root<PessoaJuridica> rootQuery = criteriaQuery.from(classe);
 		criteriaQuery.select(rootQuery);
-
-		return entityManager.createQuery(criteriaQuery).getResultList();
-
-	}
-
-	@Override
-	public List<PessoaJuridica> getRegistrosPaginacao(int pagina, int registrosPorPagina) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return entityManager.createQuery(criteriaQuery)
+				.setFirstResult((pagina-1)*registrosPorPagina)
+				.setMaxResults(registrosPorPagina)
+				.getResultList();
+		
 	}
 	
 	@Override
 	public Long contarRegistros() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+		CriteriaQuery<Long> cq = cb.createQuery(Long.class);
+		Root<PessoaJuridica> root = cq.from(PessoaJuridica.class);
+		cq.select(cb.count(root));
+		
+		return entityManager.createQuery(cq).getSingleResult();
+		
 	}
 
 }
