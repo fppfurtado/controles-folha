@@ -26,7 +26,7 @@ public class PessoaFisicaServlet extends HttpServlet {
 		String[] componentesUrl = url.split("/");
 		
 		if(componentesUrl.length == 1)
-			resp.sendRedirect("pessoa-fisica/lista");
+			resp.sendRedirect("pessoa-fisica/listar");
 
 		DAO<PessoaFisica> dao = PessoaFisicaDao.getInstancia();
 
@@ -101,14 +101,6 @@ public class PessoaFisicaServlet extends HttpServlet {
 
 	}
 
-	private void tratarExcecao(Exception e, HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-
-		req.setAttribute("erro", e.getMessage());
-		req.getRequestDispatcher("/WEB-INF/jsp/erro.jsp").forward(req, resp);
-
-	}
-
 	private void atualizarPessoaFisica(Map<String, String[]> parametros)
 			throws IllegalArgumentException, ParseException {
 
@@ -128,5 +120,13 @@ public class PessoaFisicaServlet extends HttpServlet {
 		return dao.buscar(Long.parseLong(id));
 
 	}
+	
+	private void tratarExcecao(Exception e, HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
 
+		req.setAttribute("erro", e.getMessage());
+		req.getRequestDispatcher("/WEB-INF/jsp/erro.jsp").forward(req, resp);
+
+	}
+	
 }
