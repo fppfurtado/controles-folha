@@ -42,7 +42,11 @@ public class Cargo {
 		this.denominacao = denominacao;
 		return this;
 	}
-
+	
+	public FormasNomeacao getForma_nomeacao() {
+		return forma_nomeacao;
+	}
+	
 	public Cargo setForma_nomeacao(FormasNomeacao forma_nomeacao) {
 		this.forma_nomeacao = forma_nomeacao;
 		return this;

@@ -7,6 +7,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import mppa.folha.modelo.Cargo;
+import mppa.folha.modelo.Cargo;
 import mppa.folha.modelo.PessoaJuridica;
 
 public class CargoDao extends DAO<Cargo> {
@@ -46,14 +47,29 @@ public class CargoDao extends DAO<Cargo> {
 
 	@Override
 	public List<Cargo> getRegistrosPaginacao(int pagina, int registrosPorPagina) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Class<Cargo> classe = Cargo.class;
+
+		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+		CriteriaQuery<Cargo> criteriaQuery = criteriaBuilder.createQuery(classe);
+		Root<Cargo> rootQuery = criteriaQuery.from(classe);
+		criteriaQuery.select(rootQuery);
+		
+		return entityManager.createQuery(criteriaQuery)
+				.setFirstResult((pagina-1)*registrosPorPagina)
+				.setMaxResults(registrosPorPagina)
+				.getResultList();
 	}
 	
 	@Override
 	public Long contarRegistros() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+		CriteriaQuery<Long> cq = cb.createQuery(Long.class);
+		Root<Cargo> root = cq.from(Cargo.class);
+		cq.select(cb.count(root));
+		
+		return entityManager.createQuery(cq).getSingleResult();
 	}
 
 }
