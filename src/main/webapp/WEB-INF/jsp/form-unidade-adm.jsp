@@ -12,10 +12,12 @@
 
 	<h1>CADASTRO UNIDADE ADMINISTRATIVA</h1>
 
-	<form action="salvar-unidade-adm">
+	<form action="${unidadeAdm.id == null ? 'criar' : 'atualizar'}">
+	
+		<input type="hidden" name="id" value="${unidadeAdm.id}" />
 		
 		<label for="den">DENOMINAÇÃO: </label> 
-		<input id="den"	name="denominacao" type="text" required="required" pattern="[a-zA-Zãâáêéíõôóûúç\s]*" /> 
+		<input id="den"	name="denominacao" type="text" required="required" pattern="[a-zA-Zãâáêéíõôóûúç\s]*" value="${unidadeAdm.denominacao}" /> 
 		
 		<input type="submit" value="SALVAR">
 

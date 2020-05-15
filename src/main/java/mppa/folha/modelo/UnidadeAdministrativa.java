@@ -19,6 +19,10 @@ public class UnidadeAdministrativa {
 	
 	}
 	
+	public Long getId() {
+		return id;
+	}
+	
 	public String getDenominacao() {
 		return denominacao;
 	}
