@@ -46,7 +46,9 @@ public class CargoDao extends DAO<Cargo> {
 	}
 
 	@Override
-	public List<Cargo> getRegistrosPaginacao(int pagina, int registrosPorPagina) {
+	public List<Cargo> getRegistrosPaginacao(String pagina) {
+		
+		Integer pag = Integer.parseInt(pagina);
 		
 		Class<Cargo> classe = Cargo.class;
 
@@ -56,8 +58,8 @@ public class CargoDao extends DAO<Cargo> {
 		criteriaQuery.select(rootQuery);
 		
 		return entityManager.createQuery(criteriaQuery)
-				.setFirstResult((pagina-1)*registrosPorPagina)
-				.setMaxResults(registrosPorPagina)
+				.setFirstResult((pag-1)*10)
+				.setMaxResults(10)
 				.getResultList();
 	}
 	

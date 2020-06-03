@@ -1,13 +1,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ page import="mppa.folha.dao.CargoDao,
-				java.lang.String" %>
+<%@ page import="mppa.folha.dao.VinculoFuncionalDao" %>
+<%@ page import="java.lang.Math" %>
 
-<c:set var="dao" value="${CargoDao.getInstancia()}" />
+<c:set var="dao" value="${VinculoFuncionalDao.getInstancia()}" />
 <c:set var="total_reg" value="${dao.contarRegistros()}" />
-<fmt:formatNumber var="num_formatado" value="${Math.ceil(total_reg/param['reg_por_pag'])}" maxFractionDigits="0" />
+<fmt:formatNumber var="num_formatado" value="${Math.ceil(total_reg/10)}" maxFractionDigits="0" />
 <c:set var="ultima_pag" value="${num_formatado}" />
-<c:set var="pag_atual" value="${param.pag == null ? '1' : param.pag}" />
+<c:set var="pag_atual" value="${param.pag == null ? 1 : param.pag}" />
 
 <!DOCTYPE html>
 <html>
@@ -22,27 +22,38 @@
 </head>
 <body>
 
-	<h2 class="titulo">LISTA DE CARGOS</h2>
+	<h2 class="titulo">LISTA DE VÍNCULOS FUNCIONAIS</h2>
+	<h4>${pj.nome_fantasia}</h4>
 	
-	<a class="bt" href="novo">novo</a>
+	<a class="bt" href="novo?id_pj=${pj.id}">novo</a>
 	
 	<table class="table table-striped">
 
 		<thead class="thead-dark">
 			<tr>
-				<th>DENOMINAÇÃO</th>
-				<th>FORMA NOMEAÇÃO</th>
-				<th>OPERAÇÃO</th>
+				<th>MATRÍCULA</th>
+				<th>NOME</th>
+				<th>CARGO</th>
+				<th>DATA INÍCIO</th>
+				<th>DATA FIM</th>
+				<th>LOTAÇÕES</th>
+				<th>DOCUMENTOS MARGEM</th>
+				<th>REMOVER</th>
 			</tr>
 		</thead>
 		<tbody>
 
-			<c:forEach var="cargo" items="${dao.getRegistrosPaginacao(pag_atual)}">
+			<c:forEach var="vf" items="${dao.getVinculosPJ(pj.id)}">
 
 				<tr>
-					<td><a href="../cargo/editar?id=${cargo.id}">${cargo.denominacao}</a></td>
-					<td>${cargo.forma_nomeacao}</td>
-					<td><a href="remover?id=${cargo.id}">remover</a></td>
+					<td><a href="editar?id=${vf.id}">${vf.matricula}</a></td>
+					<td>${vf.pessoa_fisica.nome}</td>
+					<td>${vf.cargo.denominacao}</td>
+					<td><fmt:formatDate value="${vf.data_inicio}" pattern="dd/MM/yyyy"/></td>
+					<td><fmt:formatDate value="${vf.data_fim}" pattern="dd/MM/yyyy"/></td>
+					<td><a href="lotacoes/listar?id_vf=${vf.id}">lotações</a></td>
+					<td><a href="doc-margem/listar?id_vf=${vf.id}">documetos margem</a></td>
+					<td><a href="remover?id=${vf.id}">remover</a></td>
 				</tr>
 
 			</c:forEach>

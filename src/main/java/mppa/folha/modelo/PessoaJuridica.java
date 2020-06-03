@@ -34,7 +34,7 @@ public class PessoaJuridica {
 	private List<UnidadeAdministrativa> unidadesAdministrativas;
 	@OneToMany
 	private List<Cargo> cargos;
-	@OneToMany
+	@OneToMany(mappedBy = "pessoa_juridica")
 	private List<VinculoFuncional> vinculosFuncionais;
 	
 	public PessoaJuridica() {

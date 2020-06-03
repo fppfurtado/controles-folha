@@ -16,7 +16,15 @@ import mppa.folha.modelo.PessoaJuridica;
 import mppa.folha.modelo.enumeracoes.Esferas;
 import mppa.folha.modelo.enumeracoes.Poderes;
 
-@WebServlet(urlPatterns = { "/pessoa-juridica/*" })
+@WebServlet(urlPatterns = { 
+		"/pessoa-juridica",
+		"/pessoa-juridica/",
+		"/pessoa-juridica/novo",
+		"/pessoa-juridica/criar",
+		"/pessoa-juridica/editar",
+		"/pessoa-juridica/atualizar",
+		"/pessoa-juridica/listar"
+		})
 public class PessoaJuridicaServlet extends HttpServlet {
 
 	DAO<PessoaJuridica> dao = PessoaJuridicaDao.getInstancia();
@@ -27,12 +35,9 @@ public class PessoaJuridicaServlet extends HttpServlet {
 		String url = req.getRequestURI().substring(req.getContextPath().length() + 1);
 		String[] componentesUrl = url.split("/");
 		
-		if(componentesUrl.length == 1)
-			resp.sendRedirect("pessoa-juridica/listar");
-
 		DAO<PessoaJuridica> dao = PessoaJuridicaDao.getInstancia();
-
-		switch (componentesUrl[1]) {
+		
+		switch (componentesUrl[componentesUrl.length-1]) {
 
 		case "novo":
 
@@ -75,12 +80,11 @@ public class PessoaJuridicaServlet extends HttpServlet {
 			break;
 
 		case "listar":
-
 			req.getRequestDispatcher("/WEB-INF/jsp/lista-pessoa-juridica.jsp").forward(req, resp);
 			break;
 
 		default:
-			resp.sendRedirect("listar");
+			resp.sendRedirect("/controles-folha/pessoa-juridica/listar");
 		}
 
 	}

@@ -25,12 +25,9 @@ public class PessoaFisicaServlet extends HttpServlet {
 		String url = req.getRequestURI().substring(req.getContextPath().length() + 1);
 		String[] componentesUrl = url.split("/");
 		
-		if(componentesUrl.length == 1)
-			resp.sendRedirect("pessoa-fisica/listar");
-
 		DAO<PessoaFisica> dao = PessoaFisicaDao.getInstancia();
 
-		switch (componentesUrl[1]) {
+		switch (componentesUrl[componentesUrl.length-1]) {
 
 		case "novo":
 
@@ -71,6 +68,12 @@ public class PessoaFisicaServlet extends HttpServlet {
 			removerPessoaFisica(req.getParameter("id"));
 			resp.sendRedirect("listar");
 			break;
+			
+		case "vinculos-funcionais":
+			
+			req.setAttribute("pessoaFisica", buscarPessoaFisica(req.getParameter("id")));
+			req.getRequestDispatcher("/WEB-INF/jsp/lista-vinculos-funcionais");
+			break;
 
 		case "listar":
 
@@ -78,7 +81,7 @@ public class PessoaFisicaServlet extends HttpServlet {
 			break;
 
 		default:
-			resp.sendRedirect("listar");
+			resp.sendRedirect("/controles-folha/pessoa-fisica/listar");
 		}
 
 	}

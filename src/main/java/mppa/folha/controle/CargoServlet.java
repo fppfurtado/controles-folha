@@ -26,12 +26,9 @@ public class CargoServlet extends HttpServlet {
 		String url = req.getRequestURI().substring(req.getContextPath().length() + 1);
 		String[] componentesUrl = url.split("/");
 		
-		if(componentesUrl.length == 1)
-			resp.sendRedirect("cargo/listar");
-
 		DAO<Cargo> dao = CargoDao.getInstancia();
 
-		switch (componentesUrl[1]) {
+		switch (componentesUrl[componentesUrl.length-1]) {
 
 		case "novo":
 
@@ -79,7 +76,7 @@ public class CargoServlet extends HttpServlet {
 			break;
 
 		default:
-			resp.sendRedirect("listar");
+			resp.sendRedirect("/controles-folha/cargo/listar");
 		}
 
 	}

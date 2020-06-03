@@ -60,7 +60,7 @@ public abstract class DAO<T> {
 
 	}
 	
-	public abstract List<T> getRegistrosPaginacao(int pagina, int registrosPorPagina);
+	public abstract List<T> getRegistrosPaginacao(String pagina);
 	
 	public abstract Long contarRegistros();
 

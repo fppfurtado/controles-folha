@@ -5,10 +5,9 @@
 
 <c:set var="dao" value="${PessoaFisicaDao.getInstancia()}" />
 <c:set var="total_reg" value="${dao.contarRegistros()}" />
-<c:set var="reg_por_pag" value="10"/>
-<fmt:formatNumber var="num_formatado" value="${Math.ceil(total_reg/reg_por_pag)}" maxFractionDigits="0" />
+<fmt:formatNumber var="num_formatado" value="${Math.ceil(total_reg/param['reg_por_pag'])}" maxFractionDigits="0" />
 <c:set var="ultima_pag" value="${num_formatado}" />
-<c:set var="pag_atual" value="${param.pag == null ? 1 : param.pag}" />
+<c:set var="pag_atual" value="${param.pag == null ? '1' : param.pag}" />
 
 <!DOCTYPE html>
 <html>
@@ -40,7 +39,7 @@
 		</thead>
 		<tbody>
 
-			<c:forEach var="pf" items="${dao.getRegistrosPaginacao(pag_atual, reg_por_pag)}">
+			<c:forEach var="pf" items="${dao.getRegistrosPaginacao(pag_atual)}">
 
 				<tr>
 					<td><a href="../pessoa-fisica/editar?id=${pf.id}">${pf.nome}</a></td>

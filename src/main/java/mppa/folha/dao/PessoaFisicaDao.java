@@ -31,8 +31,10 @@ public class PessoaFisicaDao extends DAO<PessoaFisica> {
 	}
 
 	@Override
-	public List<PessoaFisica> getRegistrosPaginacao(int pagina, int registrosPorPagina) {
+	public List<PessoaFisica> getRegistrosPaginacao(String pagina) {
 
+		Integer pag = Integer.parseInt(pagina);
+		
 		Class<PessoaFisica> classe = PessoaFisica.class;
 
 		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
@@ -41,8 +43,8 @@ public class PessoaFisicaDao extends DAO<PessoaFisica> {
 		criteriaQuery.select(rootQuery);
 		
 		return entityManager.createQuery(criteriaQuery)
-				.setFirstResult((pagina-1)*registrosPorPagina)
-				.setMaxResults(registrosPorPagina)
+				.setFirstResult((pag-1)*10)
+				.setMaxResults(10)
 				.getResultList();
 
 	}

@@ -59,7 +59,6 @@ public class PessoaFisica {
 			return this;
 		}
 			
-		
 		try {
 			
 			SimpleDateFormat formatoData = new SimpleDateFormat("yyyy-MM-dd");			
