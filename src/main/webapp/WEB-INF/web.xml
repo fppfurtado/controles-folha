@@ -5,4 +5,8 @@
   
   <display-name>controles-folha</display-name>
   
+  <welcome-file-list>
+  	<welcome-file>menu</welcome-file>
+  </welcome-file-list>
+  
 </web-app>
